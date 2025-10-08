@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/auth/auth_screen.dart';
+import 'package:widget_composition_guide/design_system/theme/app_theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,9 +12,14 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Widget Composition Guide',
-      home: AuthScreen(),
+    return AppTheme(
+      debugIsOn: true,
+      child: MaterialApp(
+        title: 'Widget Composition Guide',
+        // usando material 2 para facilitar a visualização dos componentes da tela com pouca configuração
+        theme: ThemeData(useMaterial3: false),
+        home: AuthScreen(),
+      ),
     );
   }
 }

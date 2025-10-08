@@ -8,7 +8,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AuthForm(
       title: 'Login',
-      buttonText: 'Entrar',
+      buttonLabel: 'Entrar',
       onSubmit: () {
         // Lógica de login vai aqui...
         debugPrint('Login efetuado!');

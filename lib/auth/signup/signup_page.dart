@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/auth/components/auth_form.dart';
-import 'package:widget_composition_guide/design_system/app_text_field.dart';
+import 'package:widget_composition_guide/design_system/components/app_text_field.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -9,7 +9,7 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AuthForm(
       title: 'Cadastro',
-      buttonText: 'Criar Conta 4',
+      buttonLabel: 'Criar Conta',
       onSubmit: () {
         // Lógica de cadastro vai aqui...
         debugPrint('Conta criada!');

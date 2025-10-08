@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/auth/components/auth_button.dart';
-import 'package:widget_composition_guide/design_system/app_text_field.dart';
+import 'package:widget_composition_guide/design_system/components/app_text_field.dart';
+import 'package:widget_composition_guide/design_system/theme/app_theme.dart';
 
 class AuthForm extends StatelessWidget {
   final String title;
-  final String buttonText;
+  final String buttonLabel;
   final VoidCallback onSubmit;
   // A MÁGICA ACONTECE AQUI!
   final List<Widget> extraFields;
@@ -12,16 +13,19 @@ class AuthForm extends StatelessWidget {
   const AuthForm({
     super.key,
     required this.title,
-    required this.buttonText,
+    required this.buttonLabel,
     required this.onSubmit,
     this.extraFields = const [], // Valor padrão é uma lista vazia
   });
 
   @override
   Widget build(BuildContext context) {
+    final theme = AppTheme.of(context);
+    final smallSpacing = theme.spacing.small;
+
     return Column(
       mainAxisSize: MainAxisSize.min,
-      spacing: 8,
+      spacing: smallSpacing,
       children: [
         // Campos que SEMPRE existem
         const AppTextField(label: 'Email'),
@@ -31,7 +35,7 @@ class AuthForm extends StatelessWidget {
         ...extraFields,
 
         const SizedBox(height: 20),
-        AuthButton(label: buttonText, onPressed: onSubmit, isLoading: false),
+        AuthButton(label: buttonLabel, onPressed: onSubmit, isLoading: false),
       ],
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:widget_composition_guide/design_system/app_button.dart';
+import 'package:widget_composition_guide/design_system/components/app_elevated_button.dart';
 
 class AuthButton extends StatelessWidget {
   final String label;
@@ -17,10 +17,10 @@ class AuthButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return isLoading
         ? const CircularProgressIndicator()
-        : AppButton(
+        : AppElevatedButton(
             onPressed: onPressed,
             label: label,
-            fullWidth: false,
+            fullWidth: true,
           );
   }
 }

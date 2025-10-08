@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:widget_composition_guide/design_system/theme/app_theme.dart';
 
-class AppButton extends StatelessWidget {
+class AppTextButton extends StatelessWidget {
   final String label;
   final VoidCallback? onPressed;
 
   /// Se true, o botão ocupa toda a largura disponível
   final bool fullWidth;
 
-  const AppButton({
+  const AppTextButton({
     super.key,
     required this.label,
     this.onPressed,
@@ -16,10 +17,15 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final button = ElevatedButton(
+    final theme = AppTheme.of(context);
+    final smallRadius = theme.radius.small;
+
+    final button = TextButton(
       onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+      style: TextButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(smallRadius),
+        ),
       ),
       child: Text(label),
     );
