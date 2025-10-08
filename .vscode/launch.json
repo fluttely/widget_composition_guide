@@ -1,0 +1,11 @@
+{
+  "configurations": [
+    {
+      "name": "Auth Example",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "noDebug": true
+    }
+  ]
+}

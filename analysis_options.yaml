@@ -1,28 +1,72 @@
-# This file configures the analyzer, which statically analyzes Dart code to
-# check for errors, warnings, and lints.
-#
-# The issues identified by the analyzer are surfaced in the UI of Dart-enabled
-# IDEs (https://dart.dev/tools#ides-and-editors). The analyzer can also be
-# invoked from the command line by running `flutter analyze`.
+# ============================================================================
+# MONOREPO ANALYSIS OPTIONS - Challenge Google Design System
+# ============================================================================
+# This file consolidates all analysis options for the entire monorepo.
+# Applies to: apps/* and packages/*
+# ============================================================================
 
-# The following line activates a set of recommended lints for Flutter apps,
-# packages, and plugins designed to encourage good coding practices.
-include: package:flutter_lints/flutter.yaml
+include: package:very_good_analysis/analysis_options.yaml
 
+# ============================================================================
+# LINTER RULES
+# ============================================================================
 linter:
-  # The lint rules applied to this project can be customized in the
-  # section below to disable rules from the `package:flutter_lints/flutter.yaml`
-  # included above or to enable additional rules. A list of all available lints
-  # and their documentation is published at https://dart.dev/lints.
-  #
-  # Instead of disabling a lint rule for the entire project in the
-  # section below, it can also be suppressed for a single line of code
-  # or a specific dart file by using the `// ignore: name_of_lint` and
-  # `// ignore_for_file: name_of_lint` syntax on the line or in the file
-  # producing the lint.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+    # Ordering and organization
+    - combinators_ordering # Order import combinators alphabetically
+    - directives_ordering # Order import/export directives
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+    # Code quality
+    - prefer_final_fields # Use final for fields that are not reassigned
+    - prefer_final_in_for_each # Use final in for-each loops
+    - prefer_final_locals # Use final for local variables
+
+    # Async/await enforcement
+    - unawaited_futures # Force use of await on Futures
+
+    # Disabled rules from very_good_analysis that conflict with await
+    - no_unawaited_futures: false
+
+# ============================================================================
+# ANALYZER CONFIGURATION
+# ============================================================================
+analyzer:
+  # Exclude generated and build files from analysis
+  exclude:
+    - build/**
+    - "**/build/**"
+    - lib/src/core/presentation/i18n/**
+    - "**/*.g.dart"
+    - "**/generated_plugin_registrant.dart"
+    - lib/firebase_options_dev.dart
+    - lib/firebase_options_prod.dart
+
+  # Error severity overrides
+  errors:
+    # Naming conventions - ignore
+    constant_identifier_names: ignore
+
+    # Annotation issues - ignore
+    invalid_annotation_target: ignore
+
+    # API design - ignore
+    avoid_positional_boolean_parameters: ignore
+    avoid_setters_without_getters: ignore
+
+    # Documentation - ignore (TODO: enable in the future)
+    public_member_api_docs: ignore
+
+    # ASYNC/AWAIT ENFORCEMENT
+    # Force await usage as ERROR (critical)
+    unawaited_futures: error
+
+    # Disable warnings that suggest removing await
+    unnecessary_await_in_return: ignore
+    await_only_futures: ignore
+
+# ============================================================================
+# FORMATTER CONFIGURATION
+# ============================================================================
+formatter:
+  # Preserve trailing commas for better git diffs
+  trailing_commas: preserve
