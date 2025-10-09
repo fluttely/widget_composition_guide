@@ -1,5 +1,5 @@
 /// **Widget Composition Guide**
-/// • MVVM + Design Tokens + Composition Pattern
+/// • MVVM + Design Tokens + Composite Pattern
 import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/auth/auth_screen.dart';
 import 'package:widget_composition_guide/design_system/theme/app_theme.dart';

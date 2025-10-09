@@ -1,4 +1,4 @@
-/// **AuthForm - Composition Pattern**
+/// **AuthForm - Composite Pattern**
 /// • extraFields dinâmicos por Page • MVVM + Loading
 import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/auth/components/auth_form_viewmodel.dart';

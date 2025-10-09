@@ -6,9 +6,9 @@ Demonstração de arquitetura Flutter nativa, focada em componentização, desig
 
 ## 📦 Estrutura Principal
 
-- **MVVM:** Separação clara entre lógica (ViewModel) e interface (View/Page/Screen)
-- **Design System:** Tokens centralizados para espaçamento, tamanhos e radius
-- **Composition Pattern:** Formulários dinâmicos via injeção de campos extras
+- **[MVVM:](https://learn.microsoft.com/en-us/dotnet/architecture/maui/mvvm)** Separação clara entre lógica (ViewModel) e interface (View)
+- **[Design System:](https://fountn.design/resource/the-design-system-guide/)** Tokens centralizados para espaçamento, tamanhos e radius
+- **[Composite Pattern:](https://refactoring.guru/design-patterns/composite)** Formulários dinâmicos via injeção de campos extras. Porém Flutter em si já segue esse pattern por natureza.
 
 ---
 
@@ -92,8 +92,9 @@ SizedBox(height: theme.sizes.buttonHeight);
 - [Apple Design Guide](https://developer.apple.com/design/get-started/)
 - [Flutter InheritedWidget](https://api.flutter.dev/flutter/widgets/InheritedWidget-class.html)
 - [Flutter Cookbook](https://docs.flutter.dev/cookbook)
+- [Composite Pattern](https://refactoring.guru/design-patterns/composite)
 - [Design Patterns](https://refactoring.guru/design-patterns)
-- [Nasa APOD](https://apod.nasa.gov/apod/astropix.html)
+- [MVVM](https://learn.microsoft.com/en-us/dotnet/architecture/maui/mvvm)
 
 ---
 
