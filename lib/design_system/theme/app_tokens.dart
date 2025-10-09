@@ -34,8 +34,8 @@ class AppRadius {
 class AppSizes {
   const AppSizes();
   final double buttonHeight = 48.0; // ← 48px - botões principais
-  final double iconSize = 24.0; // ← 24px - ícones padrão
   final double iconSizeSmall = 16.0; // ← 16px - ícones pequenos
+  final double iconSizeMedium = 24.0; // ← 24px - ícones padrão
   final double iconSizeLarge = 32.0; // ← 32px - ícones grandes
   final double avatarSize = 40.0; // ← 40px - avatares pequenos
   final double avatarSizeMedium = 56.0; // ← 56px - avatares médios

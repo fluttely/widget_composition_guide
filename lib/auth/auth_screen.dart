@@ -21,6 +21,7 @@ class _AuthScreenView extends AuthScreenViewModel {
   @override
   Widget build(BuildContext context) {
     final spacing = AppDesignSystem.of(context).spacing;
+    final spacingLarge = spacing.large;
     final spacingContent = spacing.content;
     final spacingScreen = spacing.screen;
 
@@ -36,7 +37,7 @@ class _AuthScreenView extends AuthScreenViewModel {
               DebugContainer(
                 color: DebugColors.imageArea,
                 child: Padding(
-                  padding: EdgeInsets.all(spacingContent),
+                  padding: EdgeInsets.all(spacingLarge),
                   child: Image.asset(
                     'assets/fluttely_logo_bg_transparent.png',
                     height: 200,
@@ -48,16 +49,16 @@ class _AuthScreenView extends AuthScreenViewModel {
               DebugContainer(
                 color: DebugColors.formArea,
                 child: currentPage == CurrentPageType.login
+                    // SRP (Single Responsibility Principle)
                     ? const LoginPage()
                     : const SignUpPage(),
               ),
 
-              // Screen conhece ambas Pages (SRP)
               DebugContainer(
                 color: DebugColors.buttonArea,
                 child: AppTextButton(
                   onPressed: switchAuthPage,
-                  label: currentPage == CurrentPageType.login
+                  labelText: currentPage == CurrentPageType.login
                       ? 'Criar conta'
                       : 'Já possuo uma conta',
                   fullWidth: false,

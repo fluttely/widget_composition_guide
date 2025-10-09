@@ -45,7 +45,7 @@ class _AuthFormView extends AuthFormViewModel {
         _Fields(extraFields: widget.extraFields),
 
         _Button(
-          label: widget.buttonLabel,
+          labelText: widget.buttonLabel,
           onPressed: handleSubmit,
           isLoading: isLoading,
         ),
@@ -67,8 +67,8 @@ class _Fields extends StatelessWidget {
     return Column(
       spacing: spacingSmall,
       children: [
-        const AppTextField(label: 'Email'),
-        const AppTextField(label: 'Senha', isPassword: true),
+        const AppTextField(labelText: 'Email'),
+        const AppTextField(labelText: 'Senha', isPassword: true),
 
         // COMPOSITION: spread operator
         ...extraFields,
@@ -79,12 +79,12 @@ class _Fields extends StatelessWidget {
 
 /// **Loading States:** CircularProgressIndicator ↔ AppElevatedButton
 class _Button extends StatelessWidget {
-  final String label;
+  final String labelText;
   final VoidCallback? onPressed;
   final bool isLoading;
 
   const _Button({
-    required this.label,
+    required this.labelText,
     required this.onPressed,
     required this.isLoading,
   });
@@ -103,7 +103,7 @@ class _Button extends StatelessWidget {
           )
         : AppElevatedButton(
             onPressed: isLoading ? null : onPressed,
-            label: label,
+            labelText: labelText,
             fullWidth: true,
           );
   }

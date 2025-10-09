@@ -5,13 +5,13 @@ import 'package:widget_composition_guide/design_system/theme/app_design_system.d
 
 /// **Design Tokens:** radius.small + sizes.buttonHeight + fullWidth conditional
 class AppElevatedButton extends StatelessWidget {
-  final String label;
+  final String labelText;
   final VoidCallback? onPressed;
   final bool fullWidth;
 
   const AppElevatedButton({
     super.key,
-    required this.label,
+    required this.labelText,
     this.onPressed,
     this.fullWidth = true,
   });
@@ -31,7 +31,7 @@ class AppElevatedButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(radiusSmall),
           ),
         ),
-        child: Text(label),
+        child: Text(labelText),
       ),
     );
 

@@ -27,12 +27,12 @@ class _SignUpPageView extends SignUpPageViewModel {
       // COMPOSITION: 3 campos extras
       extraFields: [
         const AppTextField(
-          label: 'Confirmar Senha',
+          labelText: 'Confirmar Senha',
           isPassword: true,
         ),
 
         const AppTextField(
-          label: 'Nome Completo',
+          labelText: 'Nome Completo',
         ),
 
         _TermsCheckbox(

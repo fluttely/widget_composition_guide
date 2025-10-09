@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/design_system/theme/app_design_system.dart';
 
 class AppTextButton extends StatelessWidget {
-  final String label;
+  final String labelText;
   final VoidCallback? onPressed;
   final bool fullWidth;
 
   const AppTextButton({
     super.key,
-    required this.label,
+    required this.labelText,
     this.onPressed,
     this.fullWidth = true,
   });
@@ -30,7 +30,7 @@ class AppTextButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(radiusSmall),
           ),
         ),
-        child: Text(label),
+        child: Text(labelText),
       ),
     );
 

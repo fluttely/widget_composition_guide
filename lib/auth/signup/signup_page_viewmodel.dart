@@ -11,7 +11,7 @@ abstract class SignUpPageViewModel extends State<SignUpPage> {
     if (!acceptTerms) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Você deve aceitar os termos para continuar'),
+          content: Text('Você deve aceitar os termos para se autenticar.'),
         ),
       );
       return;

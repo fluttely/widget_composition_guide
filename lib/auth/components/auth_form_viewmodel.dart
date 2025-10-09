@@ -12,7 +12,7 @@ abstract class AuthFormViewModel extends State<AuthForm> {
 
     try {
       await Future.delayed(const Duration(seconds: 2));
-      widget.onButtonSubmit();
+      widget.onButtonSubmit.call();
     } catch (e) {
       debugPrint('Erro ao submeter formulário: $e');
     } finally {

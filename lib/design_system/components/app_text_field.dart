@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/design_system/theme/app_design_system.dart';
 
 class AppTextField extends StatelessWidget {
-  final String label;
+  final String labelText;
   final bool isPassword;
 
   const AppTextField({
     super.key,
-    required this.label,
+    required this.labelText,
     this.isPassword = false,
   });
 
@@ -21,7 +21,7 @@ class AppTextField extends StatelessWidget {
 
     return TextFormField(
       decoration: InputDecoration(
-        labelText: label,
+        labelText: labelText,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(radiusSmall)),
           gapPadding: spacingExtraSmall,
