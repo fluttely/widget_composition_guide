@@ -6,30 +6,23 @@
 /// • Múltiplos de 4px: extraSmall(4) → extraLarge(32)
 /// • Uso: EdgeInsets.all(theme.spacing.medium)
 class AppSpacing {
-  /// Cria uma instância imutável do sistema de espaçamentos.
   const AppSpacing();
 
-  /// 4px - separação mínima
-  final double extraSmall = 4.0;
+  final double extraSmall = 4.0; // ← 4px - separação mínima
 
-  /// 8px - elementos relacionados
-  final double small = 8.0;
+  final double small = 8.0; // ← 8px - elementos relacionados
 
-  /// 16px - padrão mais usado
-  final double medium = 16.0;
+  final double medium = 16.0; // ← 16px - padrão mais usado
 
-  /// 24px - separação entre seções
-  final double large = 24.0;
+  final double large = 24.0; // ← 24px - separação entre seções
 
-  /// 32px - separação máxima
-  final double extraLarge = 32.0;
+  final double extraLarge = 32.0; // ← 32px - separação máxima
 }
 
 /// **AppRadius - Border Radius System**
 /// • small(4px), medium(8px), large(16px)
 /// • Uso: BorderRadius.circular(theme.radius.medium)
 class AppRadius {
-  /// Cria uma instância imutável do sistema de border radius.
   const AppRadius();
 
   /// 4px - componentes pequenos
@@ -46,7 +39,6 @@ class AppRadius {
 /// • Touch targets (44px min), Buttons (48px), Icons (24px)
 /// • Baseado em diretrizes de acessibilidade
 class AppSizes {
-  /// Cria uma instância imutável do sistema de tamanhos.
   const AppSizes();
 
   /// 48px - botões principais

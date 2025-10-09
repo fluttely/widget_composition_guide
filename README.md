@@ -2,7 +2,9 @@
 
 ## 📝 Contexto e Propósito
 
-Este projeto demonstra **estruturas arquiteturais e boas práticas** para desenvolvimento Flutter, criado como exemplo prático para apresentações técnicas. O foco está na **componentização robusta vs simplicidade**, usando **apenas Flutter nativo** sem packages externos.
+Este projeto demonstra **estruturas #### **🔧 Debug Tools:**
+- **debug_helpers.dart:** `/// Debug Helpers - Ferramentas Visuais • DebugContainer condicional • Blue/Purple/Yellow`
+- **Ativação:** `AppDesignSystem(debugIsOn: true)` no main.dartquiteturais e boas práticas** para desenvolvimento Flutter, criado como exemplo prático para apresentações técnicas. O foco está na **componentização robusta vs simplicidade**, usando **apenas Flutter nativo** sem packages externos.
 
 **⚠️ Nota:** Desenvolvido em uma tarde como demonstração - sugestões e melhorias são bem-vindas via issues/PRs.
 
@@ -66,42 +68,42 @@ Este projeto demonstra **estruturas arquiteturais e boas práticas** para desenv
 
 #### **📊 Documentação In-Code (Concisa):**
 - **app_tokens.dart:** `/// Design Tokens - Sistema Centralizado • Spacing, Radius, Sizes • Múltiplos de 4px`
-- **app_theme.dart:** `/// AppTheme - InheritedWidget Provider • Design Tokens via context • AppTheme.of(context)`
+- **app_theme.dart:** `/// AppDesignSystem - InheritedWidget Provider • Design Tokens via context • AppDesignSystem.of(context)`
 
-#### **📊 Tokens Disponíveis:**
+#### **📊 Tokens Disponíveis: sempre múltiplos de 4px**
 ```dart
-// AppSpacing: múltiplos de 4px
-extraSmall = 4.0   // separação mínima
-small = 8.0        // elementos relacionados  
-medium = 16.0      // padrão mais usado
-large = 24.0       // separação entre seções
-extraLarge = 32.0  // separação máxima
+class AppSpacing {
+  extraSmall = 4.0  // separação mínima
+  small = 8.0       // elementos relacionados  
+  medium = 16.0     // padrão mais usado
+  large = 24.0      // separação entre seções
+  extraLarge = 32.0 // separação máxima
+}
 
-// AppRadius: cantos arredondados
-small = 4.0        // componentes pequenos
-medium = 8.0       // padrão mais usado
-large = 16.0       // componentes de destaque
+class AppRadius {   // cantos arredondados
+  small = 4.0       // componentes pequenos
+  medium = 8.0      // padrão mais usado
+  large = 16.0      // componentes de destaque
+}
 
-// AppSizes: tamanhos fixos
-buttonHeight = 48.0           // botões principais
-buttonHeightSecondary = 40.0  // botões secundários
-iconSize = 24.0              // ícones padrão
-iconSizeSmall = 16.0         // ícones pequenos
-iconSizeLarge = 32.0         // ícones grandes
-avatarSize = 40.0            // avatares pequenos
-avatarSizeMedium = 56.0      // avatares médios
-minTouchTarget = 44.0        // área mínima de toque (iOS + Material)
-inputHeight = 56.0           // altura de inputs
-maxContentWidth = 600.0      // largura máxima de conteúdo
+class AppSizes {               // tamanhos fixos
+  buttonHeight = 48.0          // botões principais
+  buttonHeightSecondary = 40.0 // botões secundários
+  iconSize = 24.0              // ícones padrão
+  iconSizeSmall = 16.0         // ícones pequenos
+  iconSizeLarge = 32.0         // ícones grandes
+  avatarSize = 40.0            // avatares pequenos
+  avatarSizeMedium = 56.0      // avatares médios
+  minTouchTarget = 44.0        // área mínima de toque (iOS + Material)
+  inputHeight = 56.0           // altura de inputs
+  maxContentWidth = 600.0      // largura máxima de conteúdo
+}
 ```
 
 #### **🔌 Componentes Atômicos (Documentação Concisa):**
 - **app_elevated_button.dart:** `/// AppElevatedButton - Atomic Component • ElevatedButton + Design Tokens • fullWidth toggle`
 - **app_text_button.dart:** `/// AppTextButton - Secondary Button • TextButton + fullWidth toggle`
 - **app_text_field.dart:** `/// AppTextField - Input Component • TextFormField + Design Tokens`
-
-#### **� Debug Tools:**
-- **debug_helpers.dart:** `/// Debug Helpers - Ferramentas Visuais • DebugContainer condicional • Blue/Purple/Yellow`
 
 **Benefícios do AppSizes:**
 1. **Consistência Visual:** Todos os botões têm a mesma altura
@@ -129,10 +131,10 @@ GestureDetector(
 )
 ```
 
-#### **📖 Consumo do Tema:**
+#### **📖 Consumo do Design System:**
 ```dart
-// Exemplo em: lib/auth/auth_screen.dart:21-22
-final theme = AppTheme.of(context);
+// Exemplo em: lib/auth/auth_screen.dart:31-32
+final theme = AppDesignSystem.of(context);
 final extraLargeSpacing = theme.spacing.extraLarge;
 final buttonHeight = theme.sizes.buttonHeight;
 final iconSize = theme.sizes.iconSize;
@@ -192,6 +194,7 @@ final iconSize = theme.sizes.iconSize;
 #### **Debug Visual:**
 - **Doc:** `/// DebugContainer - Overlay Condicional • Cor quando debugIsOn = true`
 - **Colors:** Blue (image), Purple (form), Yellow (button)
+- **Ativação:** `AppDesignSystem(debugIsOn: true)` no main()
 
 ---
 
@@ -247,9 +250,9 @@ final iconSize = theme.sizes.iconSize;
 
 #### **Design System:**
 ```dart
-/// **AppTheme - InheritedWidget Provider**
+/// **AppDesignSystem - InheritedWidget Provider**
 /// • Fornece Design Tokens via context
-/// • Pattern: AppTheme.of(context).spacing.medium
+/// • Pattern: AppDesignSystem.of(context).spacing.medium
 ```
 
 #### **Componentes:**
@@ -279,7 +282,7 @@ final iconSize = theme.sizes.iconSize;
 
 ✅ **MVVM** - Separação clara View/ViewModel  
 ✅ **Composition Pattern** - AuthForm reutilizável  
-✅ **InheritedWidget** - Theme injection nativo  
+✅ **InheritedWidget** - Design System injection nativo  
 ✅ **Design Tokens** - Spacing/Radius/Sizes system  
 ✅ **Consistent Sizing** - AppSizes para dimensões padronizadas  
 ✅ **Accessibility** - Touch targets e dimensões adequadas  
@@ -294,3 +297,8 @@ final iconSize = theme.sizes.iconSize;
 **🎯 Objetivo:** Demonstrar que é possível criar arquiteturas robustas e escaláveis usando apenas Flutter nativo, com foco na organização, reutilização e manutenibilidade do código.
 
 **📖 Documentação:** Reformulada para **tópicos técnicos concisos** - permite revisão rápida dos fundamentos como **slides de apresentação**, facilitando apresentações técnicas e onboarding de equipe.
+
+Documentações uteis:
+  - Design Patterns: https://refactoring.guru/design-patterns
+  - Official Flutter App Architecture: https://docs.flutter.dev/app-architecture
+  - 

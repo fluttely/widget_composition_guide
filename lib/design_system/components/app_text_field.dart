@@ -1,5 +1,5 @@
 /// **AppTextField - Input Component**
-/// • TextFormField + Design Tokens (radius, spacing)
+/// • TextFormField + Design Tokens
 import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/design_system/theme/app_theme.dart';
 
@@ -15,16 +15,14 @@ class AppTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = AppTheme.of(context);
-    final smallRadius = theme.radius.small;
-    final extraSmallSpacing = theme.spacing.extraSmall;
+    final theme = AppDesignSystem.of(context);
 
     return TextFormField(
       decoration: InputDecoration(
         labelText: label,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(smallRadius)),
-          gapPadding: extraSmallSpacing,
+          borderRadius: BorderRadius.all(Radius.circular(theme.radius.small)),
+          gapPadding: theme.spacing.extraSmall,
         ),
       ),
       obscureText: isPassword,

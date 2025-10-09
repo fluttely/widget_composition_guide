@@ -1,5 +1,5 @@
 /// **Debug Helpers - Ferramentas Visuais**
-/// • DebugContainer: overlay colorido quando AppTheme.debugIsOn = true
+/// • DebugContainer: overlay colorido quando AppDesignSystem.debugIsOn = true
 /// • DebugColors: Blue (image), Purple (form), Yellow (button)
 import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/design_system/theme/app_theme.dart';
@@ -41,8 +41,8 @@ class DebugContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Conditional rendering baseado em AppTheme.debugIsOn
-    final theme = AppTheme.of(context);
+    // Conditional rendering baseado em AppDesignSystem.debugIsOn
+    final theme = AppDesignSystem.of(context);
     final debugIsOn = theme.debugIsOn;
 
     return Container(

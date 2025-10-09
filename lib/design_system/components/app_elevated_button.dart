@@ -1,28 +1,14 @@
 /// **AppElevatedButton - Atomic Component**
-/// • Encapsula ElevatedButton + Design Tokens
-/// • fullWidth toggle, radius consistente
+/// • ElevatedButton + Design Tokens + fullWidth toggle
 import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/design_system/theme/app_theme.dart';
 
-/// **Botão com Design Tokens aplicados**
-/// • Radius: theme.radius.small (4px)
-/// • Height: theme.sizes.buttonHeight (48px)
-/// • fullWidth: SizedBox(width: double.infinity)
+/// **Design Tokens:** radius.small + sizes.buttonHeight + fullWidth conditional
 class AppElevatedButton extends StatelessWidget {
-  /// Texto do botão
   final String label;
-
-  /// Callback (null = disabled)
   final VoidCallback? onPressed;
-
-  /// true = largura total, false = largura automática
   final bool fullWidth;
 
-  /// Cria um botão elevado com design system aplicado.
-  ///
-  /// [label] - Texto do botão (obrigatório)
-  /// [onPressed] - Callback de ação (null = desabilitado)
-  /// [fullWidth] - Largura total ou automática (padrão: true)
   const AppElevatedButton({
     super.key,
     required this.label,
@@ -32,37 +18,22 @@ class AppElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Design tokens + conditional wrapper
-    final theme = AppTheme.of(context);
-    final smallRadius = theme.radius.small;
-    final buttonHeight = theme.sizes.buttonHeight;
+    final theme = AppDesignSystem.of(context);
 
-    // Base button com design tokens aplicados
     final button = SizedBox(
-      height: buttonHeight,
+      height: theme.sizes.buttonHeight,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          // Border radius do design token
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(smallRadius),
-          ),
-          // Touch target adequado
-          padding: const EdgeInsets.symmetric(
-            horizontal: 24,
-            vertical: 12,
+            borderRadius: BorderRadius.circular(theme.radius.small),
           ),
         ),
         child: Text(label),
       ),
     );
 
-    // Conditional wrapper: full width ou largura automática
-    return fullWidth
-        ? SizedBox(
-            width: double.infinity,
-            child: button,
-          )
-        : button;
+    // Conditional wrapper pattern
+    return fullWidth ? SizedBox(width: double.infinity, child: button) : button;
   }
 }
