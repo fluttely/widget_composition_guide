@@ -21,20 +21,8 @@ class _SignUpPageView extends SignUpPageViewModel {
   Widget build(BuildContext context) {
     return AuthForm(
       title: 'Cadastro',
-      buttonLabel: 'Criar Conta',
-
-      // Validação: termos obrigatórios
-      onButtonSubmit: () {
-        if (!acceptTerms) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Você deve aceitar os termos para continuar'),
-            ),
-          );
-          return;
-        }
-        debugPrint('Conta criada com sucesso!');
-      },
+      buttonLabel: 'Criar conta',
+      onButtonSubmit: submit,
 
       // COMPOSITION: 3 campos extras
       extraFields: [

@@ -2,7 +2,7 @@
 /// • DebugContainer: overlay colorido quando AppDesignSystem.debugIsOn = true
 /// • DebugColors: Blue (image), Purple (form), Yellow (button)
 import 'package:flutter/material.dart';
-import 'package:widget_composition_guide/design_system/theme/app_theme.dart';
+import 'package:widget_composition_guide/design_system/theme/app_design_system.dart';
 
 /// **Debug Colors - Paleta para Identificação**
 /// • Blue: áreas de imagem/mídia

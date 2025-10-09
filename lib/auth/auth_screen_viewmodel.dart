@@ -8,6 +8,7 @@ enum CurrentPageType {
 }
 
 abstract class AuthScreenViewModel extends State<AuthScreen> {
+  late TextEditingController emailController;
   CurrentPageType currentPage = CurrentPageType.login;
 
   void switchAuthPage() => setState(

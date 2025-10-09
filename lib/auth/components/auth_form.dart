@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/auth/components/auth_form_viewmodel.dart';
 import 'package:widget_composition_guide/design_system/components/app_elevated_button.dart';
 import 'package:widget_composition_guide/design_system/components/app_text_field.dart';
-import 'package:widget_composition_guide/design_system/theme/app_theme.dart';
+import 'package:widget_composition_guide/design_system/theme/app_design_system.dart';
 
 /// **COMPOSITION CORE:** Login = [], SignUp = [3 campos]
 class AuthForm extends StatefulWidget {
@@ -32,33 +32,46 @@ class _AuthFormView extends AuthFormViewModel {
   @override
   Widget build(BuildContext context) {
     final spacing = AppDesignSystem.of(context).spacing;
-    final spacingSmall = spacing.small;
-    final spacingLarge = spacing.large;
+    final spacingExtraLarge = spacing.extraLarge;
 
     return Column(
-      mainAxisSize: MainAxisSize.min,
-      spacing: spacingSmall,
+      spacing: spacingExtraLarge,
       children: [
         Text(
           widget.title,
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
 
-        SizedBox(height: spacingLarge),
-
-        const AppTextField(label: 'Email'),
-        const AppTextField(label: 'Senha', isPassword: true),
-
-        // COMPOSITION: spread operator
-        ...widget.extraFields,
-
-        SizedBox(height: spacingLarge),
+        _Fields(extraFields: widget.extraFields),
 
         _Button(
           label: widget.buttonLabel,
           onPressed: handleSubmit,
           isLoading: isLoading,
         ),
+      ],
+    );
+  }
+}
+
+class _Fields extends StatelessWidget {
+  final List<Widget> extraFields;
+
+  const _Fields({required this.extraFields});
+
+  @override
+  Widget build(BuildContext context) {
+    final spacing = AppDesignSystem.of(context).spacing;
+    final spacingSmall = spacing.small;
+
+    return Column(
+      spacing: spacingSmall,
+      children: [
+        const AppTextField(label: 'Email'),
+        const AppTextField(label: 'Senha', isPassword: true),
+
+        // COMPOSITION: spread operator
+        ...extraFields,
       ],
     );
   }

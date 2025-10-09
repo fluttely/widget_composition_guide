@@ -12,7 +12,10 @@ class AppSpacing {
   final double small = 8.0; // ← 8px - elementos relacionados
   final double medium = 16.0; // ← 16px - padrão mais usado
   final double large = 24.0; // ← 24px - separação entre seções
-  final double extraLarge = 32.0; // ← 32px - separação máxima
+  double get extraLarge => 32.0; // ← 32px - separação máxima
+
+  double get content => large; // ← 32px - separação máxima
+  double get screen => extraLarge; // ← 32px - separação máxima
 }
 
 /// **AppRadius - Border Radius System**

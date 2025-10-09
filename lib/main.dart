@@ -2,7 +2,7 @@
 /// • MVVM + Design Tokens + Composite Pattern
 import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/auth/auth_screen.dart';
-import 'package:widget_composition_guide/design_system/theme/app_theme.dart';
+import 'package:widget_composition_guide/design_system/theme/app_design_system.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

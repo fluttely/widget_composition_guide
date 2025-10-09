@@ -6,9 +6,9 @@ import 'package:widget_composition_guide/auth/login/login_page.dart';
 import 'package:widget_composition_guide/auth/signup/signup_page.dart';
 import 'package:widget_composition_guide/debug_helpers.dart';
 import 'package:widget_composition_guide/design_system/components/app_text_button.dart';
-import 'package:widget_composition_guide/design_system/theme/app_theme.dart';
+import 'package:widget_composition_guide/design_system/theme/app_design_system.dart';
 
-/// **Screen → Page → View:** Screen coordena, Page especializa, View apresenta
+/// **Screen vs Page vs View:** Screen coordena, Page especializa, View apresenta
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
 
@@ -21,27 +21,28 @@ class _AuthScreenView extends AuthScreenViewModel {
   @override
   Widget build(BuildContext context) {
     final spacing = AppDesignSystem.of(context).spacing;
-    final spacingLarge = spacing.large;
-    final spacingExtraLarge = spacing.extraLarge;
+    final spacingContent = spacing.content;
+    final spacingScreen = spacing.screen;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Auth Screen')),
       body: Padding(
-        padding: EdgeInsets.all(spacingExtraLarge),
+        padding: EdgeInsets.all(spacingScreen),
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            spacing: spacingLarge,
+            spacing: spacingContent,
             children: <Widget>[
               DebugContainer(
                 color: DebugColors.imageArea,
-                child: Image.asset(
-                  'assets/fluttely_logo_bg_transparent.png',
-                  height: 200,
+                child: Padding(
+                  padding: EdgeInsets.all(spacingContent),
+                  child: Image.asset(
+                    'assets/fluttely_logo_bg_transparent.png',
+                    height: 200,
+                  ),
                 ),
               ),
-
-              SizedBox(height: spacingLarge),
 
               // Conditional rendering
               DebugContainer(
@@ -57,8 +58,8 @@ class _AuthScreenView extends AuthScreenViewModel {
                 child: AppTextButton(
                   onPressed: switchAuthPage,
                   label: currentPage == CurrentPageType.login
-                      ? 'Criar Conta'
-                      : 'Entrar',
+                      ? 'Criar conta'
+                      : 'Já possuo uma conta',
                   fullWidth: false,
                 ),
               ),

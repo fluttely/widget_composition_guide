@@ -12,7 +12,7 @@ class LoginPage extends StatelessWidget {
       onButtonSubmit: () => debugPrint('Login efetuado com sucesso!'),
 
       // COMPOSITION: lista vazia = apenas campos base!
-      extraFields: const [],
+      extraFields: [],
     );
   }
 }
