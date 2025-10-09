@@ -19,14 +19,16 @@ class AppElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = AppDesignSystem.of(context);
+    final buttonHeight = theme.sizes.buttonHeight;
+    final radiusSmall = theme.radius.small;
 
     final button = SizedBox(
-      height: theme.sizes.buttonHeight,
+      height: buttonHeight,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(theme.radius.small),
+            borderRadius: BorderRadius.circular(radiusSmall),
           ),
         ),
         child: Text(label),

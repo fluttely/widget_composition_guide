@@ -20,28 +20,33 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenView extends AuthScreenViewModel {
   @override
   Widget build(BuildContext context) {
-    final theme = AppDesignSystem.of(context);
+    final spacing = AppDesignSystem.of(context).spacing;
+    final spacingLarge = spacing.large;
+    final spacingExtraLarge = spacing.extraLarge;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Auth Screen')),
       body: Padding(
-        padding: EdgeInsets.all(theme.spacing.extraLarge),
+        padding: EdgeInsets.all(spacingExtraLarge),
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            spacing: theme.spacing.large,
+            spacing: spacingLarge,
             children: <Widget>[
               DebugContainer(
                 color: DebugColors.imageArea,
-                child: Image.asset('assets/nasa_logo.png'),
+                child: Image.asset(
+                  'assets/fluttely_logo_bg_transparent.png',
+                  height: 200,
+                ),
               ),
 
-              SizedBox(height: theme.spacing.large),
+              SizedBox(height: spacingLarge),
 
               // Conditional rendering
               DebugContainer(
                 color: DebugColors.formArea,
-                child: currentPage == 'login'
+                child: currentPage == CurrentPageType.login
                     ? const LoginPage()
                     : const SignUpPage(),
               ),
@@ -51,7 +56,9 @@ class _AuthScreenView extends AuthScreenViewModel {
                 color: DebugColors.buttonArea,
                 child: AppTextButton(
                   onPressed: switchAuthPage,
-                  label: currentPage == 'login' ? 'Criar Conta' : 'Entrar',
+                  label: currentPage == CurrentPageType.login
+                      ? 'Criar Conta'
+                      : 'Entrar',
                   fullWidth: false,
                 ),
               ),

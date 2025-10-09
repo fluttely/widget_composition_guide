@@ -9,15 +9,16 @@ void main() {
 
   runApp(
     AppDesignSystem(
+      // debugIsOn: true,
       darkTheme: darkTheme,
-      child: const App(),
+      child: const AppRoot(),
     ),
   );
 }
 
 /// **App Root:** AppDesignSystem → MaterialApp → AuthScreen
-class App extends StatelessWidget {
-  const App({super.key});
+class AppRoot extends StatelessWidget {
+  const AppRoot({super.key});
 
   @override
   Widget build(BuildContext context) {

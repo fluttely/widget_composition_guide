@@ -31,23 +31,32 @@ class AuthForm extends StatefulWidget {
 class _AuthFormView extends AuthFormViewModel {
   @override
   Widget build(BuildContext context) {
-    final theme = AppDesignSystem.of(context);
+    final spacing = AppDesignSystem.of(context).spacing;
+    final spacingSmall = spacing.small;
+    final spacingLarge = spacing.large;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
-      spacing: theme.spacing.small,
+      spacing: spacingSmall,
       children: [
+        Text(
+          widget.title,
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+
+        SizedBox(height: spacingLarge),
+
         const AppTextField(label: 'Email'),
         const AppTextField(label: 'Senha', isPassword: true),
 
         // COMPOSITION: spread operator
         ...widget.extraFields,
 
-        SizedBox(height: theme.spacing.large),
+        SizedBox(height: spacingLarge),
 
         _Button(
           label: widget.buttonLabel,
-          onPressed: isLoading ? () {} : handleSubmit,
+          onPressed: handleSubmit,
           isLoading: isLoading,
         ),
       ],
@@ -80,7 +89,7 @@ class _Button extends StatelessWidget {
             ),
           )
         : AppElevatedButton(
-            onPressed: onPressed,
+            onPressed: isLoading ? null : onPressed,
             label: label,
             fullWidth: true,
           );

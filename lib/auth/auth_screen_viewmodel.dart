@@ -2,9 +2,17 @@
 import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/auth/auth_screen.dart';
 
-abstract class AuthScreenViewModel extends State<AuthScreen> {
-  String currentPage = 'login';
+enum CurrentPageType {
+  login,
+  signup,
+}
 
-  void switchAuthPage() =>
-      setState(() => currentPage = currentPage == 'login' ? 'signup' : 'login');
+abstract class AuthScreenViewModel extends State<AuthScreen> {
+  CurrentPageType currentPage = CurrentPageType.login;
+
+  void switchAuthPage() => setState(
+    () => currentPage = currentPage == CurrentPageType.login
+        ? CurrentPageType.signup
+        : CurrentPageType.login,
+  );
 }

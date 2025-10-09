@@ -42,5 +42,5 @@ class AppDesignSystem extends InheritedWidget {
 final darkTheme = ThemeData(
   useMaterial3: false,
   scaffoldBackgroundColor: Colors.black,
-  colorScheme: ColorScheme.dark(primary: Colors.red),
+  colorScheme: ColorScheme.dark(primary: Color(0xffef6f3b)),
 );

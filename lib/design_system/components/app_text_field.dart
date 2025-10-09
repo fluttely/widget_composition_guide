@@ -16,13 +16,15 @@ class AppTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = AppDesignSystem.of(context);
+    final radiusSmall = theme.radius.small;
+    final spacingExtraSmall = theme.spacing.extraSmall;
 
     return TextFormField(
       decoration: InputDecoration(
         labelText: label,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(theme.radius.small)),
-          gapPadding: theme.spacing.extraSmall,
+          borderRadius: BorderRadius.all(Radius.circular(radiusSmall)),
+          gapPadding: spacingExtraSmall,
         ),
       ),
       obscureText: isPassword,

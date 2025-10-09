@@ -27,23 +27,18 @@ class DebugContainer extends StatelessWidget {
   final Color color;
 
   /// Widget filho envolvido pelo debug container
-  final Widget child;
+  final Widget? child;
 
   /// Cria um container de debug com cor e widget filho especificados.
-  ///
-  /// [color] - Cor de overlay para debug visual
-  /// [child] - Widget que será envolvido pelo debug container
   const DebugContainer({
     super.key,
     required this.color,
-    required this.child,
+    this.child,
   });
 
   @override
   Widget build(BuildContext context) {
-    // Conditional rendering baseado em AppDesignSystem.debugIsOn
-    final theme = AppDesignSystem.of(context);
-    final debugIsOn = theme.debugIsOn;
+    final debugIsOn = AppDesignSystem.of(context).debugIsOn;
 
     return Container(
       // Conditional rendering: cor quando debug ativo, transparente caso contrário
