@@ -1,3 +1,5 @@
+/// **AppTextField - Input Component**
+/// • TextFormField + Design Tokens (radius, spacing)
 import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/design_system/theme/app_theme.dart';
 

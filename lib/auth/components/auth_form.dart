@@ -1,64 +1,16 @@
-/// # Auth Form - Componente Reutilizável de Formulário
-///
-/// Componente de formulário de autenticação que implementa o **Composition Pattern**
-/// para máxima reutilização entre diferentes páginas (Login e SignUp).
-///
-/// ## Padrão Composition:
-/// Aceita `extraFields` como parâmetro, permitindo que páginas diferentes
-/// injetem campos específicos sem duplicar a estrutura base do formulário.
-///
-/// ## Benefícios:
-/// - **Reutilização:** Mesmo componente para Login e SignUp
-/// - **Flexibilidade:** Campos dinâmicos via composition
-/// - **Consistência:** UI padronizada entre diferentes usos
-/// - **Manutenção:** Mudanças na estrutura refletem em todos os usos
-///
-/// ## Arquitetura MVVM:
-/// ```
-/// AuthForm (StatefulWidget) ← Composition Root
-/// ├── _AuthFormView (View - Presentation)
-/// └── AuthFormViewModel (ViewModel - Logic)
-///     ├── Loading State Management
-///     └── Form Submission Logic
-/// ```
+/// **AuthForm - Composition Pattern**
+/// • Formulário base (Email + Senha) + extraFields dinâmicos
+/// • MVVM + Loading state management
 import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/auth/components/auth_form_viewmodel.dart';
-import 'package:widget_composition_guide/design_system/app_button.dart';
+import 'package:widget_composition_guide/design_system/components/app_elevated_button.dart';
 import 'package:widget_composition_guide/design_system/components/app_text_field.dart';
 import 'package:widget_composition_guide/design_system/theme/app_theme.dart';
 
-/// Formulário de autenticação reutilizável que implementa Composition Pattern.
-///
-/// Este componente demonstra como criar widgets altamente reutilizáveis
-/// através de composition, permitindo que diferentes páginas injetem
-/// campos específicos sem duplicar código.
-///
-/// ## Composition Pattern:
-/// ```dart
-/// // Login: sem campos extras
-/// AuthForm(
-///   buttonLabel: 'Entrar',
-///   onButtonSubmit: handleLogin,
-///   extraFields: [], // ← Vazio
-/// )
-///
-/// // SignUp: com campos extras
-/// AuthForm(
-///   buttonLabel: 'Criar Conta',
-///   onButtonSubmit: handleSignUp,
-///   extraFields: [        // ← Campos específicos
-///     AppTextField(label: 'Nome Completo'),
-///     TermsCheckbox(),
-///   ],
-/// )
-/// ```
-///
-/// ## Estrutura Base:
-/// Sempre inclui os campos fundamentais de autenticação:
-/// 1. Campo de Email
-/// 2. Campo de Senha
-/// 3. Campos extras (via composition)
-/// 4. Botão de submissão com loading state
+/// **Composition Pattern - A MÁGICA:**
+/// • extraFields: List<Widget> = campos específicos de cada Page
+/// • Login: extraFields = [] (só Email + Senha)
+/// • SignUp: extraFields = [ConfirmSenha, Nome, Termos]
 class AuthForm extends StatefulWidget {
   /// Título do formulário (não usado atualmente, preparado para futuro).
   final String title;
@@ -71,17 +23,8 @@ class AuthForm extends StatefulWidget {
   /// A lógica específica de cada página (login/signup) é injetada aqui.
   final VoidCallback onButtonSubmit;
 
-  /// **A MÁGICA ACONTECE AQUI!**
-  ///
-  /// Lista de widgets extras que serão injetados no formulário.
-  /// Permite que diferentes páginas adicionem campos específicos
-  /// sem duplicar a estrutura base do formulário.
-  ///
-  /// ## Exemplos de Extra Fields:
-  /// - Confirmação de senha (SignUp)
-  /// - Nome completo (SignUp)
-  /// - Checkbox de termos (SignUp)
-  /// - Campos de perfil específicos
+  /// **COMPOSITION CORE - extraFields**
+  /// Lista de widgets específicos injetados por cada Page
   final List<Widget> extraFields;
 
   /// Cria um formulário de autenticação com composition de campos.
@@ -102,25 +45,13 @@ class AuthForm extends StatefulWidget {
   State<AuthForm> createState() => _AuthFormView();
 }
 
-/// View do Auth Form responsável apenas pela apresentação visual.
-///
-/// Exemplo da diferença entre Page e View - todo componente possui uma View,
-/// seja ele uma página, um botão, um formulário, etc.
-///
-/// ## Responsabilidades da View:
-/// - **Layout:** Organizar campos usando design tokens
-/// - **Rendering:** Renderizar campos base + campos extras
-/// - **Binding:** Conectar estado do ViewModel com UI
-///
-/// ## Estrutura Visual:
-/// 1. Campos base (Email + Senha)
-/// 2. Campos extras (via spread operator)
-/// 3. Espaçamento (usando design tokens)
-/// 4. Botão com estado de loading
+/// **View - Layout + Binding**
+/// • Campos base + ...extraFields (spread operator)
+/// • Loading state binding do ViewModel
 class _AuthFormView extends AuthFormViewModel {
   @override
   Widget build(BuildContext context) {
-    // Acessa design tokens via AppTheme
+    // Design tokens para espaçamento consistente
     final theme = AppTheme.of(context);
     final smallSpacing = theme.spacing.small;
     final largeSpacing = theme.spacing.large;
@@ -129,17 +60,16 @@ class _AuthFormView extends AuthFormViewModel {
       mainAxisSize: MainAxisSize.min,
       spacing: smallSpacing,
       children: [
-        // Campos que SEMPRE existem em qualquer formulário de auth
+        // Campos base: sempre presentes
         const AppTextField(label: 'Email'),
         const AppTextField(label: 'Senha', isPassword: true),
 
-        // Campos EXTRAS que podem ou não existir (Composition Pattern)
-        // O spread operator (...) "desempacota" a lista de widgets
+        // COMPOSITION: campos específicos via spread operator
         ...widget.extraFields,
 
         SizedBox(height: largeSpacing),
 
-        // Botão com loading state gerenciado pelo ViewModel
+        // Botão com loading state (ViewModel)
         _Button(
           label: widget.buttonLabel,
           onPressed: isLoading ? () {} : handleSubmit,
@@ -150,20 +80,9 @@ class _AuthFormView extends AuthFormViewModel {
   }
 }
 
-/// Botão interno do formulário com estado de loading integrado.
-///
-/// **Decisão arquitetural:** Componente privado pois é usado apenas neste contexto.
-/// Se fosse reutilizado em múltiplos locais, seria promovido para widget público
-/// em um novo arquivo.
-///
-/// ## Estados:
-/// - **Normal:** Exibe botão com texto
-/// - **Loading:** Exibe CircularProgressIndicator
-///
-/// ## Props:
-/// - [label] - Texto do botão
-/// - [onPressed] - Callback (null quando loading)
-/// - [isLoading] - Estado de carregamento
+/// **Botão Interno - Loading States**
+/// • Normal: AppElevatedButton
+/// • Loading: CircularProgressIndicator
 class _Button extends StatelessWidget {
   /// Texto exibido no botão.
   final String label;

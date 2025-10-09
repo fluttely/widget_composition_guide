@@ -1,69 +1,23 @@
-/// # Design System - Theme Provider
-///
-/// Implementa o sistema de design tokens usando [InheritedWidget] nativo do Flutter.
-/// Fornece acesso centralizado aos tokens de design em toda a árvore de widgets.
-///
-/// ## Padrão Implementado:
-/// - **InheritedWidget Pattern** para injeção de dependência
-/// - **Design Tokens** para consistência visual
-/// - **Theme Provider** para configuração centralizada
-///
-/// ## Tokens Disponíveis:
-/// - [AppSpacing] - Sistema de espaçamentos
-/// - [AppRadius] - Sistema de border radius
-/// - [AppSizes] - Sistema de tamanhos fixos
-/// - [debugIsOn] - Flag para helpers visuais
-///
-/// **Referência:** [Flutter InheritedWidget Documentation](https://api.flutter.dev/flutter/widgets/InheritedWidget-class.html)
+/// **AppTheme - InheritedWidget Provider**
+/// • Fornece Design Tokens via context
+/// • Pattern: AppTheme.of(context).spacing.medium
 import 'package:flutter/widgets.dart';
 import 'package:widget_composition_guide/design_system/theme/app_tokens.dart';
 
-/// Provider de tema personalizado que injeta tokens de design na árvore de widgets.
-///
-/// Utiliza [InheritedWidget] para disponibilizar tokens de design em qualquer
-/// lugar da aplicação sem necessidade de prop drilling.
-///
-/// ## Exemplo de Uso:
-/// ```dart
-/// final theme = AppTheme.of(context);
-/// final spacing = theme.spacing.medium; // 16.0
-/// final radius = theme.radius.small;    // 4.0
-/// final height = theme.sizes.buttonHeight; // 48.0
-/// ```
-///
-/// ## Benefícios:
-/// - **Performance:** Rebuilt apenas quando tokens mudam
-/// - **Acessibilidade:** Disponível em qualquer widget descendente
-/// - **Tipagem:** Type-safe access aos tokens
-/// - **Flexibilidade:** Permite override de tokens por contexto
-///
-/// ## Arquitetura:
-/// ```
-/// AppTheme (InheritedWidget)
-/// ├── AppSpacing (Design Tokens)
-/// ├── AppRadius (Design Tokens)
-/// ├── AppSizes (Design Tokens)
-/// └── debugIsOn (Development Tool)
-/// ```
+/// **InheritedWidget que injeta Design Tokens**
+/// • Performance: rebuild apenas quando tokens mudam
+/// • Type-safe access aos valores padronizados
 class AppTheme extends InheritedWidget {
-  /// Sistema de espaçamentos da aplicação.
-  ///
-  /// Contém todos os valores padronizados para margins, paddings e gaps.
+  /// Sistema de espaçamentos (4px múltiplos)
   final AppSpacing spacing;
 
-  /// Sistema de border radius da aplicação.
-  ///
-  /// Define valores consistentes para cantos arredondados de componentes.
+  /// Sistema de border radius (cantos arredondados)
   final AppRadius radius;
 
-  /// Sistema de tamanhos fixos da aplicação.
-  ///
-  /// Define alturas, larguras e dimensões padronizadas para componentes.
+  /// Sistema de tamanhos fixos (buttons, icons, avatars)
   final AppSizes sizes;
 
-  /// Flag para ativação de ferramentas de debug visual.
-  ///
-  /// Quando `true`, ativa [DebugContainer] e outros helpers visuais.
+  /// Flag para debug visual (DebugContainer)
   final bool debugIsOn;
 
   /// Cria um provider de tema com os tokens especificados.
@@ -82,16 +36,8 @@ class AppTheme extends InheritedWidget {
     this.debugIsOn = false,
   });
 
-  /// Acessa a instância do [AppTheme] mais próxima na árvore de widgets.
-  ///
-  /// Deve ser chamado dentro do contexto de um widget descendente.
-  /// Throws [AssertionError] se nenhum [AppTheme] for encontrado.
-  ///
-  /// ## Exemplo:
-  /// ```dart
-  /// final theme = AppTheme.of(context);
-  /// final padding = EdgeInsets.all(theme.spacing.large);
-  /// ```
+  /// **Acesso estático ao AppTheme**
+  /// • Uso: final theme = AppTheme.of(context)
   static AppTheme of(BuildContext context) {
     final AppTheme? result = context
         .dependOnInheritedWidgetOfExactType<AppTheme>();
@@ -99,10 +45,8 @@ class AppTheme extends InheritedWidget {
     return result!;
   }
 
-  /// Determina se os widgets dependentes devem ser reconstruídos.
-  ///
-  /// Retorna `true` quando os tokens de spacing ou radius mudam,
-  /// garantindo que a UI seja atualizada com os novos valores.
+  /// **UpdateShouldNotify - Performance**
+  /// • Rebuild apenas quando tokens mudam
   @override
   bool updateShouldNotify(AppTheme oldWidget) {
     return spacing != oldWidget.spacing ||

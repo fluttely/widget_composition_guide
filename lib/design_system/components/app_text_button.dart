@@ -1,3 +1,5 @@
+/// **AppTextButton - Secondary Button**
+/// • TextButton + Design Tokens, fullWidth toggle
 import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/design_system/theme/app_theme.dart';
 
@@ -19,15 +21,19 @@ class AppTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = AppTheme.of(context);
     final smallRadius = theme.radius.small;
+    final buttonHeight = theme.sizes.buttonHeight;
 
-    final button = TextButton(
-      onPressed: onPressed,
-      style: TextButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(smallRadius),
+    final button = SizedBox(
+      height: buttonHeight,
+      child: TextButton(
+        onPressed: onPressed,
+        style: TextButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(smallRadius),
+          ),
         ),
+        child: Text(label),
       ),
-      child: Text(label),
     );
 
     return fullWidth ? SizedBox(width: double.infinity, child: button) : button;
