@@ -7,13 +7,7 @@ import 'package:widget_composition_guide/design_system/theme/app_design_system.d
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(
-    AppDesignSystem(
-      // debugIsOn: true,
-      darkTheme: darkTheme,
-      child: const AppRoot(),
-    ),
-  );
+  runApp(const AppRoot());
 }
 
 /// **App Root:** AppDesignSystem → MaterialApp → AuthScreen
@@ -22,13 +16,14 @@ class AppRoot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final darkTheme = AppDesignSystem.of(context).darkTheme;
-
-    return MaterialApp(
-      title: 'Widget Composition Guide',
-      darkTheme: darkTheme,
-      themeMode: ThemeMode.dark,
-      home: const AuthScreen(),
+    return AppDesignSystem(
+      // debugIsOn: true,
+      child: MaterialApp(
+        title: 'Widget Composition Guide',
+        darkTheme: darkTheme,
+        themeMode: ThemeMode.dark,
+        home: const AuthScreen(),
+      ),
     );
   }
 }

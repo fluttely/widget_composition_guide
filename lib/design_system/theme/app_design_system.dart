@@ -5,7 +5,6 @@ import 'package:widget_composition_guide/design_system/theme/app_tokens.dart';
 
 /// **Performance:** rebuild apenas quando tokens mudam
 class AppDesignSystem extends InheritedWidget {
-  final ThemeData darkTheme;
   final AppSpacing spacing;
   final AppRadius radius;
   final AppSizes sizes;
@@ -14,7 +13,6 @@ class AppDesignSystem extends InheritedWidget {
   const AppDesignSystem({
     super.key,
     required super.child,
-    required this.darkTheme,
     this.spacing = const AppSpacing(),
     this.radius = const AppRadius(),
     this.sizes = const AppSizes(),
