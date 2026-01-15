@@ -32,10 +32,9 @@ class _AuthFormView extends AuthFormViewModel {
   @override
   Widget build(BuildContext context) {
     final spacing = AppDesignSystem.of(context).spacing;
-    final spacingExtraLarge = spacing.extraLarge;
 
     return Column(
-      spacing: spacingExtraLarge,
+      spacing: spacing.authFormContent,
       children: [
         Text(
           widget.title,
@@ -62,10 +61,9 @@ class _Fields extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final spacing = AppDesignSystem.of(context).spacing;
-    final spacingSmall = spacing.small;
 
     return Column(
-      spacing: spacingSmall,
+      spacing: spacing.authFormFields,
       children: [
         const AppTextField(labelText: 'Email'),
         const AppTextField(labelText: 'Senha', isPassword: true),

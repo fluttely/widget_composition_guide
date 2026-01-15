@@ -17,7 +17,7 @@ class AppRoot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppDesignSystem(
-      // debugIsOn: true,
+      debugIsOn: true,
       child: MaterialApp(
         title: 'Widget Composition Guide',
         darkTheme: darkTheme,

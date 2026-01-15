@@ -21,23 +21,20 @@ class _AuthScreenView extends AuthScreenViewModel {
   @override
   Widget build(BuildContext context) {
     final spacing = AppDesignSystem.of(context).spacing;
-    final spacingLarge = spacing.large;
-    final spacingContent = spacing.content;
-    final spacingScreen = spacing.screen;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Auth Screen')),
       body: Padding(
-        padding: EdgeInsets.all(spacingScreen),
+        padding: EdgeInsets.all(spacing.screen),
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            spacing: spacingContent,
+            spacing: spacing.content,
             children: <Widget>[
               DebugContainer(
                 color: DebugColors.imageArea,
                 child: Padding(
-                  padding: EdgeInsets.all(spacingLarge),
+                  padding: EdgeInsets.all(spacing.logo),
                   child: Image.asset(
                     'assets/fluttely_logo_bg_transparent.png',
                     height: 200,

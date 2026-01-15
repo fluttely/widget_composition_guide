@@ -5,33 +5,44 @@
 /// **AppSpacing - Sistema de Espaçamentos**
 /// • Múltiplos de 4px: extraSmall(4) → extraLarge(32)
 /// • Uso: EdgeInsets.all(theme.spacing.medium)
-class AppSpacing {
+final class AppSpacing {
   const AppSpacing();
 
-  final double extraSmall = 4.0; // ← 4px - separação mínima
-  final double small = 8.0; // ← 8px - elementos relacionados
-  final double medium = 16.0; // ← 16px - padrão mais usado
-  final double large = 24.0; // ← 24px - separação entre seções
-  double get extraLarge => 32.0; // ← 32px - separação máxima
+  final double _superSmall =
+      2.0; // ← 2px - separação para casos muito específicos
+  final double _extraSmall = 4.0; // ← 4px - separação mínima
+  final double _small = 8.0; // ← 8px - elementos relacionados
+  final double _medium = 16.0; // ← 16px - padrão mais usado
+  final double _large = 24.0; // ← 24px - separação entre seções
+  final double _extraLarge = 32.0; // ← 32px - separação máxima
+  final double _superLarge =
+      48.0; // ← 48px - separação para casos muito específicos
 
-  double get content => large; // ← 32px - separação máxima
-  double get screen => extraLarge; // ← 32px - separação máxima
+  double get logo => _large; // ← 24px
+  double get content => _large; // ← 24px
+  double get screen => _extraLarge; // ← 32px
+  double get textFormField => _extraSmall; // ← 4px
+  double get authFormContent => _extraLarge; // ← 32px
+  double get authFormFields => _small; // ← 8px
 }
 
 /// **AppRadius - Border Radius System**
 /// • Uso: BorderRadius.circular(theme.radius.medium)
-class AppRadius {
+final class AppRadius {
   const AppRadius();
 
-  final double small = 4.0; // ← 4px - componentes pequenos
-  final double medium = 8.0; // ← 8px - padrão mais usado
-  final double large = 16.0; // ← 16px - componentes de destaque
+  final double _small = 4.0; // ← 4px - componentes pequenos
+  final double _medium = 8.0; // ← 8px - padrão mais usado
+  final double _large = 16.0; // ← 16px - componentes de destaque
+
+  double get textFormField => _small; // ← 4px
+  double get button => _small; // ← 4px
 }
 
 /// **AppSizes - Tamanhos Fixos**
 /// • Touch targets (44px min), Buttons (48px), Icons (24px)
 /// • Baseado em diretrizes de acessibilidade
-class AppSizes {
+final class AppSizes {
   const AppSizes();
   final double buttonHeight = 48.0; // ← 48px - botões principais
   final double iconSizeSmall = 16.0; // ← 16px - ícones pequenos
