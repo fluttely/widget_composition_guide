@@ -23,7 +23,9 @@ class AppTextField extends StatelessWidget {
       decoration: InputDecoration(
         labelText: labelText,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(radius.textFormField)),
+          borderRadius: BorderRadius.all(
+            Radius.circular(radius.textFormField),
+          ),
           gapPadding: spacing.textFormField,
         ),
       ),

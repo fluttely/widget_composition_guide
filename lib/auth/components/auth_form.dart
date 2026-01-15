@@ -1,5 +1,6 @@
-/// **AuthForm - Composite Pattern**
+/// **AuthForm - Composite Pattern (REFATORADO)**
 /// • extraFields dinâmicos por Page • MVVM + Loading
+/// • SEM context redundante nos getters
 import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/auth/components/auth_form_viewmodel.dart';
 import 'package:widget_composition_guide/design_system/components/app_elevated_button.dart';
@@ -11,8 +12,6 @@ class AuthForm extends StatefulWidget {
   final String title;
   final String buttonLabel;
   final VoidCallback onButtonSubmit;
-
-  /// **COMPOSITION CORE - extraFields**
   final List<Widget> extraFields;
 
   const AuthForm({
@@ -27,22 +26,21 @@ class AuthForm extends StatefulWidget {
   State<AuthForm> createState() => _AuthFormView();
 }
 
-/// **View:** ...extraFields (spread operator) + Loading binding
 class _AuthFormView extends AuthFormViewModel {
   @override
   Widget build(BuildContext context) {
-    final spacing = AppDesignSystem.of(context).spacing;
+    // 🔥 Acessa UMA VEZ - tokens já tem screenType
+    final ds = AppDesignSystem.of(context);
+    final spacing = ds.spacing;
 
     return Column(
-      spacing: spacing.authFormContent,
+      spacing: spacing.authFormContent, // 🔥 SEM context!
       children: [
         Text(
           widget.title,
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
-
         _Fields(extraFields: widget.extraFields),
-
         _Button(
           labelText: widget.buttonLabel,
           onPressed: handleSubmit,
@@ -63,19 +61,16 @@ class _Fields extends StatelessWidget {
     final spacing = AppDesignSystem.of(context).spacing;
 
     return Column(
-      spacing: spacing.authFormFields,
+      spacing: spacing.authFormFields, // 🔥 SEM context!
       children: [
         const AppTextField(labelText: 'Email'),
         const AppTextField(labelText: 'Senha', isPassword: true),
-
-        // COMPOSITION: spread operator
         ...extraFields,
       ],
     );
   }
 }
 
-/// **Loading States:** CircularProgressIndicator ↔ AppElevatedButton
 class _Button extends StatelessWidget {
   final String labelText;
   final VoidCallback? onPressed;
