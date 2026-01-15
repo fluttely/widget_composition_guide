@@ -10,8 +10,6 @@ final class LoginPage extends StatelessWidget {
       title: 'Login',
       buttonLabel: 'Entrar',
       onButtonSubmit: () => debugPrint('Login efetuado com sucesso!'),
-
-      // COMPOSITION: lista vazia = apenas campos base!
       extraFields: [],
     );
   }

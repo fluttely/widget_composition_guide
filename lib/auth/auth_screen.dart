@@ -1,5 +1,3 @@
-/// **AuthScreen - Screen Coordinator**
-/// • Coordena Login + SignUp • MVVM pattern
 import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/auth/auth_screen_viewmodel.dart';
 import 'package:widget_composition_guide/auth/login/login_page.dart';
@@ -8,7 +6,6 @@ import 'package:widget_composition_guide/debug_helpers.dart';
 import 'package:widget_composition_guide/design_system/components/app_text_button.dart';
 import 'package:widget_composition_guide/design_system/theme/app_design_system.dart';
 
-/// **Screen vs Page vs View:** Screen coordena, Page especializa, View apresenta
 final class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
 
@@ -16,7 +13,6 @@ final class AuthScreen extends StatefulWidget {
   State<AuthScreen> createState() => _AuthScreenView();
 }
 
-/// **View:** renderização condicional + DebugContainer
 final class _AuthScreenView extends AuthScreenViewModel {
   @override
   Widget build(BuildContext context) {
@@ -42,11 +38,9 @@ final class _AuthScreenView extends AuthScreenViewModel {
                 ),
               ),
 
-              // Conditional rendering
               DebugContainer(
                 color: DebugColors.formArea,
                 child: currentPage == CurrentPageType.login
-                    // SRP (Single Responsibility Principle)
                     ? const LoginPage()
                     : const SignUpPage(),
               ),

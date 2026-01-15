@@ -1,26 +1,21 @@
-/// **Widget Responsivo Reutilizável - Builder Pattern**
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:widget_composition_guide/design_system/theme/app_design_system.dart';
 import 'package:widget_composition_guide/design_system/theme/screen_size_info.dart';
 
-/// **ResponsiveBuilder - Performance otimizado**
 final class ResponsiveBuilder extends StatelessWidget {
   final Widget Function(BuildContext context, ScreenSizeInfo info)? builder;
-  final Widget Function(BuildContext context, ScreenSizeInfo info)? mobile;
-  final Widget Function(BuildContext context, ScreenSizeInfo info)? tablet;
-  final Widget Function(BuildContext context, ScreenSizeInfo info)? desktop;
+  final Widget Function(BuildContext context, ScreenSizeInfo info) mobile;
+  final Widget Function(BuildContext context, ScreenSizeInfo info) tablet;
+  final Widget Function(BuildContext context, ScreenSizeInfo info) desktop;
 
   const ResponsiveBuilder({
     super.key,
     this.builder,
-    this.mobile,
-    this.tablet,
-    this.desktop,
-  }) : assert(
-         builder != null || mobile != null,
-         'Você deve fornecer pelo menos builder ou mobile',
-       );
+    required this.mobile,
+    required this.tablet,
+    required this.desktop,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,31 +23,27 @@ final class ResponsiveBuilder extends StatelessWidget {
 
     if (builder != null) {
       return builder!(context, screenSize);
+    } else {
+      return switch (screenSize.type) {
+        ScreenSizeType.mobile => mobile(context, screenSize),
+        ScreenSizeType.tablet => (tablet)(context, screenSize),
+        ScreenSizeType.desktop => (desktop)(context, screenSize),
+      };
     }
-
-    return switch (screenSize.type) {
-      ScreenSizeType.mobile => mobile!(context, screenSize),
-      ScreenSizeType.tablet => (tablet ?? mobile)!(context, screenSize),
-      ScreenSizeType.desktop => (desktop ?? tablet ?? mobile)!(
-        context,
-        screenSize,
-      ),
-    };
   }
 }
 
-/// **ResponsiveValue Widget - Para valores simples**
 final class ResponsiveValue<T> extends StatelessWidget {
-  final T mobile;
-  final T? tablet;
-  final T? desktop;
   final Widget Function(BuildContext context, T value) builder;
+  final T mobile;
+  final T tablet;
+  final T desktop;
 
   const ResponsiveValue({
     super.key,
     required this.mobile,
-    this.tablet,
-    this.desktop,
+    required this.tablet,
+    required this.desktop,
     required this.builder,
   });
 
@@ -62,8 +53,8 @@ final class ResponsiveValue<T> extends StatelessWidget {
 
     final value = switch (screenType) {
       ScreenSizeType.mobile => mobile,
-      ScreenSizeType.tablet => tablet ?? mobile,
-      ScreenSizeType.desktop => desktop ?? tablet ?? mobile,
+      ScreenSizeType.tablet => tablet,
+      ScreenSizeType.desktop => desktop,
     };
 
     return builder(context, value);

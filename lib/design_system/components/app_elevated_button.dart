@@ -1,9 +1,6 @@
-/// **AppElevatedButton - Atomic Component**
-/// • ElevatedButton + Design Tokens + fullWidth toggle
 import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/design_system/theme/app_design_system.dart';
 
-/// **Design Tokens:** radius.small + sizes.buttonHeight + fullWidth conditional
 final class AppElevatedButton extends StatelessWidget {
   final String labelText;
   final VoidCallback? onPressed;
@@ -35,7 +32,6 @@ final class AppElevatedButton extends StatelessWidget {
       ),
     );
 
-    // Conditional wrapper pattern
     return fullWidth ? SizedBox(width: double.infinity, child: button) : button;
   }
 }

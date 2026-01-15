@@ -1,9 +1,6 @@
-/// **AuthFormViewModel - Loading State**
-/// • isLoading + async simulation • handleSubmit pattern
 import 'package:flutter/widgets.dart';
 import 'package:widget_composition_guide/auth/components/auth_form.dart';
 
-/// **Async Pattern:** try/catch/finally + mounted check
 abstract class AuthFormViewModel extends State<AuthForm> {
   bool isLoading = false;
 

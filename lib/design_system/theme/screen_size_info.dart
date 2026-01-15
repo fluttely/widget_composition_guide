@@ -1,6 +1,3 @@
-/// **ScreenSizeInfo - Informações cacheadas de tela**
-/// • Calcula uma vez, reutiliza múltiplas vezes
-/// • Immutable para máxima performance
 import 'package:flutter/widgets.dart';
 
 enum ScreenSizeType {
@@ -9,7 +6,27 @@ enum ScreenSizeType {
   desktop,
 }
 
-/// **Classe imutável com cache de informações de tela**
+@immutable
+final class ScreenSizeValue<T> {
+  final T mobile;
+  final T tablet;
+  final T desktop;
+
+  const ScreenSizeValue({
+    required this.mobile,
+    required this.tablet,
+    required this.desktop,
+  });
+
+  T get(ScreenSizeType type) {
+    return switch (type) {
+      ScreenSizeType.mobile => mobile,
+      ScreenSizeType.tablet => tablet,
+      ScreenSizeType.desktop => desktop,
+    };
+  }
+}
+
 @immutable
 final class ScreenSizeInfo {
   final ScreenSizeType type;
@@ -24,7 +41,6 @@ final class ScreenSizeInfo {
     required this.orientation,
   });
 
-  /// **Factory que calcula o tipo baseado na largura**
   factory ScreenSizeInfo.fromSize(Size size, Orientation orientation) {
     final type = _calculateType(size.width);
     return ScreenSizeInfo._(
@@ -35,7 +51,6 @@ final class ScreenSizeInfo {
     );
   }
 
-  /// **Breakpoints configuráveis**
   static const double kMobileBreakpoint = 768;
   static const double kTabletBreakpoint = 1280;
 
@@ -45,7 +60,6 @@ final class ScreenSizeInfo {
     return ScreenSizeType.desktop;
   }
 
-  // Helpers convenientes
   bool get isMobile => type == ScreenSizeType.mobile;
   bool get isTablet => type == ScreenSizeType.tablet;
   bool get isDesktop => type == ScreenSizeType.desktop;
@@ -55,27 +69,4 @@ final class ScreenSizeInfo {
   @override
   String toString() =>
       'ScreenSizeInfo(${type.name}, ${width.toInt()}×${height.toInt()})';
-}
-
-/// **Value final class para valores responsivos**
-@immutable
-final class ScreenSizeValue<T> {
-  final T mobile;
-  final T tablet;
-  final T desktop;
-
-  const ScreenSizeValue({
-    required this.mobile,
-    required this.tablet,
-    required this.desktop,
-  });
-
-  /// **Acesso direto por tipo - O(1)**
-  T get(ScreenSizeType type) {
-    return switch (type) {
-      ScreenSizeType.mobile => mobile,
-      ScreenSizeType.tablet => tablet,
-      ScreenSizeType.desktop => desktop,
-    };
-  }
 }
