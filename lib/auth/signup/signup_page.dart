@@ -7,7 +7,7 @@ import 'package:widget_composition_guide/design_system/components/app_text_field
 
 /// **Page com Estado - StatefulWidget**
 /// • acceptTerms state para validação
-class SignUpPage extends StatefulWidget {
+final class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
   @override
@@ -16,7 +16,7 @@ class SignUpPage extends StatefulWidget {
 
 /// **View - Campos Extras**
 /// • COMPOSITION: 3 campos específicos do SignUp
-class _SignUpPageView extends SignUpPageViewModel {
+final class _SignUpPageView extends SignUpPageViewModel {
   @override
   Widget build(BuildContext context) {
     return AuthForm(
@@ -46,7 +46,7 @@ class _SignUpPageView extends SignUpPageViewModel {
 
 /// **TermsCheckbox - Controlled Component**
 /// • Callback pattern + área clicável expandida
-class _TermsCheckbox extends StatelessWidget {
+final class _TermsCheckbox extends StatelessWidget {
   /// Estado atual (aceito/não aceito)
   final bool acceptTerms;
 

@@ -6,7 +6,7 @@ import 'package:widget_composition_guide/design_system/theme/screen_size_info.da
 
 /// **AppSpacing - Sistema de espaçamento responsivo**
 @immutable
-class AppSpacing {
+final class AppSpacing {
   final ScreenSizeType _screenType;
 
   // 🔥 ScreenType passado APENAS no construtor
@@ -65,21 +65,11 @@ class AppSpacing {
   double get textFormField => _textFormFieldValue.get(_screenType);
   double get authFormContent => _authFormContentValue.get(_screenType);
   double get authFormFields => _authFormFieldsValue.get(_screenType);
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is AppSpacing &&
-          runtimeType == other.runtimeType &&
-          _screenType == other._screenType;
-
-  @override
-  int get hashCode => _screenType.hashCode;
 }
 
 /// **AppRadius - Sistema de bordas responsivo**
 @immutable
-class AppRadius {
+final class AppRadius {
   final ScreenSizeType _screenType;
 
   const AppRadius(this._screenType);
@@ -103,21 +93,11 @@ class AppRadius {
 
   double get textFormField => _textFormFieldValue.get(_screenType);
   double get button => _buttonValue.get(_screenType);
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is AppRadius &&
-          runtimeType == other.runtimeType &&
-          _screenType == other._screenType;
-
-  @override
-  int get hashCode => _screenType.hashCode;
 }
 
 /// **AppSizes - Tamanhos fixos do sistema**
 @immutable
-class AppSizes {
+final class AppSizes {
   final ScreenSizeType _screenType;
 
   const AppSizes(this._screenType);
@@ -151,14 +131,4 @@ class AppSizes {
   );
 
   double get iconLarge => _iconLargeValue.get(_screenType);
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is AppSizes &&
-          runtimeType == other.runtimeType &&
-          _screenType == other._screenType;
-
-  @override
-  int get hashCode => _screenType.hashCode;
 }

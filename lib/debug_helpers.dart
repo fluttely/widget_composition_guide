@@ -8,7 +8,7 @@ import 'package:widget_composition_guide/design_system/theme/app_design_system.d
 /// • Blue: áreas de imagem/mídia
 /// • Purple: formulários/inputs
 /// • Yellow: botões/ações
-class DebugColors {
+final class DebugColors {
   /// Azul - imagens/mídia
   static const Color imageArea = Colors.blue;
 
@@ -22,7 +22,7 @@ class DebugColors {
 /// **DebugContainer - Overlay Condicional**
 /// • Cor quando debugIsOn = true, transparente quando false
 /// • Usado para identificar áreas de layout visualmente
-class DebugContainer extends StatelessWidget {
+final class DebugContainer extends StatelessWidget {
   /// Cor de overlay (use DebugColors)
   final Color color;
 

@@ -9,7 +9,7 @@ import 'package:widget_composition_guide/design_system/components/app_text_butto
 import 'package:widget_composition_guide/design_system/theme/app_design_system.dart';
 
 /// **Screen vs Page vs View:** Screen coordena, Page especializa, View apresenta
-class AuthScreen extends StatefulWidget {
+final class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
 
   @override
@@ -17,7 +17,7 @@ class AuthScreen extends StatefulWidget {
 }
 
 /// **View:** renderização condicional + DebugContainer
-class _AuthScreenView extends AuthScreenViewModel {
+final class _AuthScreenView extends AuthScreenViewModel {
   @override
   Widget build(BuildContext context) {
     final spacing = AppDesignSystem.of(context).spacing;

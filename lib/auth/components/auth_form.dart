@@ -8,7 +8,7 @@ import 'package:widget_composition_guide/design_system/components/app_text_field
 import 'package:widget_composition_guide/design_system/theme/app_design_system.dart';
 
 /// **COMPOSITION CORE:** Login = [], SignUp = [3 campos]
-class AuthForm extends StatefulWidget {
+final class AuthForm extends StatefulWidget {
   final String title;
   final String buttonLabel;
   final VoidCallback onButtonSubmit;
@@ -26,7 +26,7 @@ class AuthForm extends StatefulWidget {
   State<AuthForm> createState() => _AuthFormView();
 }
 
-class _AuthFormView extends AuthFormViewModel {
+final class _AuthFormView extends AuthFormViewModel {
   @override
   Widget build(BuildContext context) {
     // 🔥 Acessa UMA VEZ - tokens já tem screenType
@@ -51,7 +51,7 @@ class _AuthFormView extends AuthFormViewModel {
   }
 }
 
-class _Fields extends StatelessWidget {
+final class _Fields extends StatelessWidget {
   final List<Widget> extraFields;
 
   const _Fields({required this.extraFields});
@@ -71,7 +71,7 @@ class _Fields extends StatelessWidget {
   }
 }
 
-class _Button extends StatelessWidget {
+final class _Button extends StatelessWidget {
   final String labelText;
   final VoidCallback? onPressed;
   final bool isLoading;

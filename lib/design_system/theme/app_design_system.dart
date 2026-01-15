@@ -7,7 +7,7 @@ import 'package:widget_composition_guide/design_system/theme/app_tokens.dart';
 import 'package:widget_composition_guide/design_system/theme/screen_size_info.dart';
 
 /// **Performance:** rebuild apenas quando tokens OU screenSize mudam
-class AppDesignSystem extends InheritedWidget {
+final class AppDesignSystem extends InheritedWidget {
   final ScreenSizeInfo screenSize;
   final AppSpacing spacing;
   final AppRadius radius;
@@ -51,7 +51,7 @@ class AppDesignSystem extends InheritedWidget {
 
 /// **Provider Widget - Gerencia ScreenSizeInfo automaticamente**
 /// 🔥 LayoutBuilder só rebuilda quando constraints mudam!
-class AppDesignSystemProvider extends StatelessWidget {
+final class AppDesignSystemProvider extends StatelessWidget {
   final Widget child;
   final bool debugIsOn;
 

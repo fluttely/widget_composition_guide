@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/design_system/theme/app_design_system.dart';
 
 /// **Design Tokens:** radius.small + sizes.buttonHeight + fullWidth conditional
-class AppElevatedButton extends StatelessWidget {
+final class AppElevatedButton extends StatelessWidget {
   final String labelText;
   final VoidCallback? onPressed;
   final bool fullWidth;

@@ -6,7 +6,7 @@ enum ScreenSizeType {
   desktop,
 }
 
-class ScreenSizeValue<T> {
+final class ScreenSizeValue<T> {
   final T mobile;
   final T tablet;
   final T desktop;
@@ -18,7 +18,7 @@ class ScreenSizeValue<T> {
   });
 }
 
-class ScreenSizeHelper {
+final class ScreenSizeHelper {
   static const double kMobileBreakpoint = 768; // Até 768px = mobile
   static const double kTabletBreakpoint = 1280; // 768-1280px = tablet
 

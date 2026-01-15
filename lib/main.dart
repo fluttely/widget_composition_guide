@@ -12,7 +12,7 @@ void main() {
 
 /// **App Root:** AppDesignSystemProvider → MaterialApp → AuthScreen
 /// 🔥 Agora usa AppDesignSystemProvider que gerencia responsividade automaticamente
-class AppRoot extends StatelessWidget {
+final class AppRoot extends StatelessWidget {
   const AppRoot({super.key});
 
   @override

@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/design_system/theme/app_design_system.dart';
 
-class AppTextButton extends StatelessWidget {
+final class AppTextButton extends StatelessWidget {
   final String labelText;
   final VoidCallback? onPressed;
   final bool fullWidth;

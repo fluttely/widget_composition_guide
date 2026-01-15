@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/auth/components/auth_form.dart';
 
-class LoginPage extends StatelessWidget {
+final class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override

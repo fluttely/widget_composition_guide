@@ -5,7 +5,7 @@ import 'package:widget_composition_guide/design_system/theme/app_design_system.d
 import 'package:widget_composition_guide/design_system/theme/screen_size_info.dart';
 
 /// **ResponsiveBuilder - Performance otimizado**
-class ResponsiveBuilder extends StatelessWidget {
+final class ResponsiveBuilder extends StatelessWidget {
   final Widget Function(BuildContext context, ScreenSizeInfo info)? builder;
   final Widget Function(BuildContext context, ScreenSizeInfo info)? mobile;
   final Widget Function(BuildContext context, ScreenSizeInfo info)? tablet;
@@ -42,7 +42,7 @@ class ResponsiveBuilder extends StatelessWidget {
 }
 
 /// **ResponsiveValue Widget - Para valores simples**
-class ResponsiveValue<T> extends StatelessWidget {
+final class ResponsiveValue<T> extends StatelessWidget {
   final T mobile;
   final T? tablet;
   final T? desktop;

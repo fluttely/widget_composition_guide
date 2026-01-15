@@ -11,7 +11,7 @@ enum ScreenSizeType {
 
 /// **Classe imutável com cache de informações de tela**
 @immutable
-class ScreenSizeInfo {
+final class ScreenSizeInfo {
   final ScreenSizeType type;
   final double width;
   final double height;
@@ -52,29 +52,14 @@ class ScreenSizeInfo {
   bool get isPortrait => orientation == Orientation.portrait;
   bool get isLandscape => orientation == Orientation.landscape;
 
-  /// **Performance critical: comparação eficiente**
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ScreenSizeInfo &&
-          runtimeType == other.runtimeType &&
-          type == other.type &&
-          width == other.width &&
-          height == other.height &&
-          orientation == other.orientation;
-
-  @override
-  int get hashCode =>
-      type.hashCode ^ width.hashCode ^ height.hashCode ^ orientation.hashCode;
-
   @override
   String toString() =>
       'ScreenSizeInfo(${type.name}, ${width.toInt()}×${height.toInt()})';
 }
 
-/// **Value class para valores responsivos**
+/// **Value final class para valores responsivos**
 @immutable
-class ScreenSizeValue<T> {
+final class ScreenSizeValue<T> {
   final T mobile;
   final T tablet;
   final T desktop;
@@ -93,16 +78,4 @@ class ScreenSizeValue<T> {
       ScreenSizeType.desktop => desktop,
     };
   }
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ScreenSizeValue<T> &&
-          runtimeType == other.runtimeType &&
-          mobile == other.mobile &&
-          tablet == other.tablet &&
-          desktop == other.desktop;
-
-  @override
-  int get hashCode => mobile.hashCode ^ tablet.hashCode ^ desktop.hashCode;
 }
