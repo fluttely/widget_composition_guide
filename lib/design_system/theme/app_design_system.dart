@@ -5,6 +5,7 @@ import 'package:widget_composition_guide/design_system/theme/app_tokens.dart';
 
 /// **Performance:** rebuild apenas quando tokens mudam
 class AppDesignSystem extends InheritedWidget {
+  // screensizeinfo aqui!
   final AppSpacing spacing;
   final AppRadius radius;
   final AppSizes sizes;
