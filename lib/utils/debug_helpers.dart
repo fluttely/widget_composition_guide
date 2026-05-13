@@ -3,15 +3,12 @@ import 'package:widget_composition_guide/design_system/theme/app_design_system.d
 
 final class DebugColors {
   static const Color imageArea = Colors.blue;
-
   static const Color formArea = Colors.purple;
-
   static const Color buttonArea = Colors.yellow;
 }
 
 final class DebugContainer extends StatelessWidget {
   final Color color;
-
   final Widget? child;
 
   const DebugContainer({
@@ -25,7 +22,7 @@ final class DebugContainer extends StatelessWidget {
     final debugIsOn = AppDesignSystem.of(context).debugIsOn;
 
     return Container(
-      color: debugIsOn ? color : Colors.transparent,
+      color: debugIsOn ? color.withValues(alpha: 0.3) : Colors.transparent,
       child: child,
     );
   }

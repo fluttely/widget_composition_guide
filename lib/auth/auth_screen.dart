@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:widget_composition_guide/auth/auth_screen_viewmodel.dart';
 import 'package:widget_composition_guide/auth/login/login_page.dart';
 import 'package:widget_composition_guide/auth/signup/signup_page.dart';
-import 'package:widget_composition_guide/debug_helpers.dart';
+import 'package:widget_composition_guide/utils/debug_helpers.dart';
 import 'package:widget_composition_guide/design_system/components/app_text_button.dart';
 import 'package:widget_composition_guide/design_system/theme/app_design_system.dart';
 
